@@ -1,5 +1,5 @@
 {
-  "name": "@rific/expo-sync",
+  "name": "@rific/sync",
   "version": "0.1.2",
   "description": "Generic SQLite sync engine for Expo — schema management, upsert/delete, and cursor state persistence",
   "keywords": [
