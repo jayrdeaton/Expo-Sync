@@ -23,6 +23,7 @@
   "type": "commonjs",
   "exports": {
     ".": {
+      "react-native": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
@@ -32,7 +33,10 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src",
+    "!src/__tests__",
+    "!src/__mocks__"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --clean",
