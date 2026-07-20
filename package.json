@@ -23,7 +23,7 @@
   "type": "commonjs",
   "exports": {
     ".": {
-      "react-native": "./src/index.ts",
+      "react-native": "./dist/index.js",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
@@ -35,11 +35,11 @@
   "files": [
     "dist",
     "src",
-    "!src/__tests__",
-    "!src/__mocks__"
+    "!src/__tests__"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "build:watch": "tsup src/index.ts --format cjs,esm --dts --watch",
     "fix": "eslint --fix",
     "lint": "eslint",
     "prepublishOnly": "npm run build",
@@ -65,7 +65,7 @@
     "ts-jest": "^29.4.9",
     "ts-node": "^10.9.2",
     "tsup": "^8.0.0",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.3"
   },
   "publishConfig": {
