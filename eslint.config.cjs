@@ -1,45 +1,14 @@
 const { defineConfig } = require('eslint/config')
-const prettierRecommended = require('eslint-plugin-prettier/recommended')
-const simpleImportSort = require('eslint-plugin-simple-import-sort')
-const tsParser = require('@typescript-eslint/parser')
-const tsEslint = require('typescript-eslint')
-const packageJson = require('eslint-plugin-package-json')
+const base = require('@infinitetoken/eslint-config/npm-package')
 
 module.exports = defineConfig([
+  ...base,
   {
-    files: ['**/*.ts'],
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        project: './tsconfig.json'
-      }
-    }
+    ignores: ['**/*.cjs', 'src/__tests__/**', '.claude/worktrees/**']
   },
   {
-    ignores: ['dist/**', 'node_modules/**', 'lib/**', 'coverage/**', '**/*.js', '**/*.mjs', '**/*.cjs', 'src/__tests__/**', '.claude/worktrees/**']
-  },
-  ...tsEslint.configs.recommended,
-  prettierRecommended,
-  packageJson.configs.recommended,
-  {
-    extends: [packageJson.configs.recommended],
-    files: ['package.json'],
     rules: {
-      'package-json/order-properties': 'warn',
-      'package-json/sort-collections': 'warn'
-    }
-  },
-  {
-    plugins: {
-      'simple-import-sort': simpleImportSort
-    },
-    rules: {
-      'prettier/prettier': 'warn',
-      'simple-import-sort/imports': 'warn',
-      'simple-import-sort/exports': 'warn',
-      'no-console': 'warn',
-      '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' }],
-      '@typescript-eslint/no-require-imports': 'off'
+      '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' }]
     }
   },
   {
