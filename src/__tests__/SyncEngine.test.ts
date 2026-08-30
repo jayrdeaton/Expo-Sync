@@ -19,11 +19,7 @@ describe('register', () => {
 
   it('supports chaining multiple channels', () => {
     const engine = new SyncEngine(createDb())
-    expect(
-      engine
-        .register({ name: 'logs', schema: { id: 'TEXT' } })
-        .register({ name: 'flags', schema: { id: 'TEXT' } })
-    ).toBe(engine)
+    expect(engine.register({ name: 'logs', schema: { id: 'TEXT' } }).register({ name: 'flags', schema: { id: 'TEXT' } })).toBe(engine)
   })
 })
 
@@ -71,10 +67,7 @@ describe('push', () => {
     const engine = new SyncEngine(db)
     engine.register({ name: 'flags', schema: { id: 'TEXT', logId: 'TEXT' } })
     await engine.push('flags', { id: 'flag-1', logId: 'log-1' })
-    expect(db.runAsync).toHaveBeenCalledWith(
-      expect.stringContaining('INSERT OR REPLACE INTO flags'),
-      expect.arrayContaining(['flag-1', 'log-1'])
-    )
+    expect(db.runAsync).toHaveBeenCalledWith(expect.stringContaining('INSERT OR REPLACE INTO flags'), expect.arrayContaining(['flag-1', 'log-1']))
   })
 
   it('runs transform before upsert', async () => {
@@ -84,10 +77,7 @@ describe('push', () => {
     engine.register({ name: 'logs', schema: { id: 'TEXT', level: 'INTEGER', message: 'TEXT' }, transform })
     await engine.push('logs', { id: '1', encrypted: 'opaque-blob' })
     expect(transform).toHaveBeenCalledWith({ id: '1', encrypted: 'opaque-blob' })
-    expect(db.runAsync).toHaveBeenCalledWith(
-      expect.stringContaining('INSERT OR REPLACE INTO logs'),
-      expect.arrayContaining(['1', 2, 'hello'])
-    )
+    expect(db.runAsync).toHaveBeenCalledWith(expect.stringContaining('INSERT OR REPLACE INTO logs'), expect.arrayContaining(['1', 2, 'hello']))
   })
 
   it('supports async transform', async () => {
@@ -160,10 +150,7 @@ describe('setCursor', () => {
   it('upserts the cursor into _sync_state', async () => {
     const db = createDb()
     await new SyncEngine(db).setCursor('logs', 'cursor-xyz')
-    expect(db.runAsync).toHaveBeenCalledWith(
-      expect.stringContaining('INSERT OR REPLACE INTO _sync_state'),
-      expect.arrayContaining(['logs', 'cursor-xyz'])
-    )
+    expect(db.runAsync).toHaveBeenCalledWith(expect.stringContaining('INSERT OR REPLACE INTO _sync_state'), expect.arrayContaining(['logs', 'cursor-xyz']))
   })
 
   it('includes syncedAt timestamp', async () => {

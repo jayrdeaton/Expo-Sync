@@ -1,17 +1,4 @@
 {
-  "extends": "@infinitetoken/tsconfig/tsconfig.json",
-  "compilerOptions": {
-    "target": "ES2020",
-    "lib": ["ES2020"],
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "sourceMap": true,
-    "outDir": "dist",
-    "rootDir": "src",
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "types": ["jest", "node"]
-  },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", ".claude/worktrees"]
+  "extends": "@infinitetoken/tsconfig/node",
+  "include": ["src"]
 }
