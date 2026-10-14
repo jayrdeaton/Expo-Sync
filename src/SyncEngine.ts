@@ -6,7 +6,7 @@ export class SyncEngine {
   // `declare` here is load-bearing, not stylistic: without it, TypeScript emits these as real
   // ES2022 class-field declarations under an esnext target (a bare `db;` line, and `channels`
   // hoisted out of the constructor into its own field initializer), which changes tsup's output
-  // — see the (removed) local `target: "ES2020"` override this used to require. `declare` tells
+  // - see the (removed) local `target: "ES2020"` override this used to require. `declare` tells
   // TypeScript these are type-only annotations with no field-declaration semantics of their own;
   // the constructor assignment below is the only thing that actually creates the property, at
   // any target, matching how a plain (pre-ES2022) class always worked.

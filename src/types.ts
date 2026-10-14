@@ -2,7 +2,7 @@ export type SQLiteValue = string | number | null
 
 export type ColumnType = 'TEXT' | 'INTEGER' | 'REAL' | 'BLOB'
 
-/** Minimal database interface — satisfied by expo-sqlite's SQLiteDatabase out of the box. */
+/** Minimal database interface - satisfied by expo-sqlite's SQLiteDatabase out of the box. */
 export interface Database {
   execAsync(source: string): Promise<void>
   runAsync(source: string, params: SQLiteValue[]): Promise<unknown>

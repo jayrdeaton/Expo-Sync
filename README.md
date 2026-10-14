@@ -1,6 +1,6 @@
 # @rific/sync
 
-A generic SQLite sync engine for Expo. Handles schema management, upsert/delete, and cursor-based sync state — so you can focus on fetching data, not wiring up tables.
+A generic SQLite sync engine for Expo. Handles schema management, upsert/delete, and cursor-based sync state - so you can focus on fetching data, not wiring up tables.
 
 Works with `expo-sqlite`'s `SQLiteDatabase` out of the box.
 
