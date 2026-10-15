@@ -3,15 +3,12 @@ import { ChannelConfig, Database, SQLiteValue } from './types'
 type AnyChannel = ChannelConfig<unknown, Record<string, SQLiteValue>>
 
 export class SyncEngine {
-  // `declare` here is load-bearing, not stylistic: without it, TypeScript emits these as real
-  // ES2022 class-field declarations under an esnext target (a bare `db;` line, and `channels`
-  // hoisted out of the constructor into its own field initializer), which changes tsup's output
-  // - see the (removed) local `target: "ES2020"` override this used to require. `declare` tells
-  // TypeScript these are type-only annotations with no field-declaration semantics of their own;
-  // the constructor assignment below is the only thing that actually creates the property, at
-  // any target, matching how a plain (pre-ES2022) class always worked.
-  declare private readonly db: Database
-  declare private readonly channels: Map<string, AnyChannel>
+  // No `declare` modifier here: the package's "react-native" entry is this raw source, and Metro's
+  // Babel preset rejects `declare` fields (allowDeclareFields is off), so consumers fail to bundle.
+  // Plain fields compile to ES2022 field declarations in tsup's output, which is harmless since the
+  // constructor assigns both before anything reads them.
+  private readonly db: Database
+  private readonly channels: Map<string, AnyChannel>
 
   constructor(db: Database) {
     this.channels = new Map()
