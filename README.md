@@ -115,3 +115,7 @@ Saves a cursor for a channel along with a `syncedAt` timestamp.
 ## License
 
 MIT
+
+---
+
+Made by [Infinite Token](https://www.infinitetoken.com), the team behind [Lumber](https://lumber.infinitetoken.com): end-to-end encrypted logging.
